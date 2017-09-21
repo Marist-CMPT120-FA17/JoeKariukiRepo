@@ -1,3 +1,224 @@
+<!--
+    Joe Kariuki
+    14th September 2017
+    CMPT_120L_202_17F: Project 1 - My first web page
+-->
+
+<!DOCTYPE html>
 <html>
-    HELLO WORLD
+    <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+       <!-- FONTS -->
+       <link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+       <link href="https://fonts.googleapis.com/css?family=Hammersmith+One" rel="stylesheet">
+       <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+       <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+       
+       <!--- Bootstrap Template -->
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">     
+       
+       <!-- Font Awesome Icons -->
+        
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       
+       <title>Joe Kariuki | My Web Page</title>
+       
+       <!-- CSS -->
+       
+       <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Montserrat', sans-serif;
+
+            }
+
+            body p {
+                font-family: 'Crimson Text', serif;
+                font-size: 20px;
+            }
+
+            .jumbotron {
+                background: none;
+                padding-bottom: 25px
+            }
+
+            .jumbotron img {
+                border-radius: 100px;
+                text-align: center;
+            }
+
+            .intro {
+                text-align: center
+            }
+
+            .name1 {
+                font-family: 'Montserrat', sans-serif;
+                text-decoration: overline;
+            }
+
+            .name2 {
+                font-family: 'Raleway', sans-serif;
+                text-decoration: underline;
+            }
+
+            .name3 {
+                font-family: 'Hammersmith One', sans-serif;
+                text-decoration: line-through;
+            }
+
+            #class-name {
+                font-family: monospace;
+            }
+
+            .show {
+                background-color: #e67e22;
+                padding-top: 20px;
+                padding-bottom: 5px;
+            }
+
+            .show  h3 {
+                color: #ffffff;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                font-family: 'Montserrat-Light', sans-serif;
+            }
+
+            .show p {
+                color: #000000;
+                padding-top: 10px;
+                font-family: 'Crimson Text', serif; 
+                font-size: 20px;
+            }
+
+            .movies {
+                padding-top: 40px;
+                margin-bottom: 40px;
+                height: 200px
+            }
+
+            .movies h3 {
+                text-align: center;
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            .movies ul {
+                list-style-type: none;
+                text-align: center;
+                padding-left: 0;
+
+            }
+
+            .movies li {
+                padding-top: 10px;
+                font-family: 'Crimson Text', serif;
+                font-size: 22px;
+            }
+
+            .movies a {
+                text-decoration: none;
+
+            }
+
+            .movies a:hover {
+                color: #e67e22;
+            }
+
+            .contact {
+                background-color: #eee;
+                padding-top: 30px;
+                padding-bottom: 30px;
+            }
+
+            .contact i {
+                padding: 20px;
+            }
+
+            .contact a {
+                text-decoration: none;
+            }
+
+            .fa {
+                font-size: 24px;
+                color: #e67e22;
+            }
+
+
+            .fa:hover {
+                color: #255fff;
+            }
+
+
+       </style>
+    </head>
+    
+    <body>
+
+           <div class="jumbotron">
+                  <div class="text-center">
+                      <img src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAi6AAAAJGIzNmY4Yzg3LWFhYjctNDkwMi1hYTA5LTM4YjE5MDNhMzAyMg.jpg" height="180" width="180" alt="Profile Image">
+                  </div>
+                   
+           </div>
+           
+           <div class="intro">
+                <div class="container">
+                    <p>My name is Joe Kariuki</p>
+                    <p>Let's see that in a different style ... <span class="name1"> Joe Kariuki</span></p>
+                    <p>One more time ... <span class="name2"> Joe Kariuki</span></p>
+                    <p>Last one for the road ... <span class="name3"> Joe Kariuki</span></p>
+                    
+                    <br>
+                    <h4>My class name:</h4>
+                        <p id="class-name"> CMPT_120L_202_17F: Intro to Programming</p>
+                    <br>
+
+                </div>
+           </div>
+            
+            
+            <div class="show">
+                <h3 class="text-center">My favorite animated show:</h3>
+                <div class="text-center">
+                  <img src="http://media.comicbook.com/uploads1/2015/08/rick-and-morty---header-147026.jpg" class="rounded img-fluid" alt="TV Show Thumbnail" width="745" height="437">
+                    <p> Rick and Morty.</p>
+                </div>
+            </div>
+            
+            <div class="container">
+              <div class="movies">
+                <h3>Movies I Like:</h3>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=s2-1hz1juBI" target="_blank">Hacksaw Ridge</a></li>
+                    <li><a href="http://www.starwars.com/films" target="_blank">The Star Wars Saga</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=kk1M_HwmFMM" target="_blank">Unbroken</a></li>
+                </ul>
+              </div>
+            </div>
+            
+            
+            <footer>
+               
+                   <div class="contact">
+                      <div class="container text-center">
+                           <h3>Contact</h3>
+                            <a href="mailto:joe.kariuki1@marist.edu">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                            <a href="https://twitter.com/_joekariuki" target="_blank">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/joe-kariuki/" target="_blank">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                      </div>
+                   </div>
+                
+            </footer>
+                
+    </body>
 </html>
+
+
