@@ -12,26 +12,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
-    <title>My Game</title>
+    <title>Joe's Game</title>
     <style>
+        body {
+            text-align: center;
+        }
   
     </style>
+    
+    <script type="text/javascript">
+        
+    // Global Variables
+        var currentLoc = 0;
+        var score = 0;
+    
+        
+    //Directional Event Handlers
+        
+        function btnNorth_click() {
+            
+        }
+        
+    </script>
 </head>
 
 <body>
-   <h1>This is my "Game title"</h1>
+   <h1>Nightwalk of Terror</h1>
    
-   <textarea name="Game" id="game" cols="30" rows="10">You are at the begining</textarea>
+   <h5>Introduction</h5>
+   <p>You are standing at the end of a long dark haunted hallway. You're goal is to reach the end of the</p>
+   
+   <textarea name="game" id="taMain" cols="30" rows="20">You are at the begining</textarea>
    
    <br>
    
-   <button>Move North</button>
-   <button>Move South</button>
-   <button>Move East</button>
-   <button>Move West</button>
+   <div class="directions">
+       <input type="button" value="North" onclick="btnNorth_click();">
+       <input type="button" value="South" onclick="btnSouth_click();">
+       <input type="button" value="East" onclick="btnEast_click();">
+       <input type="button" value="West" onclick="btnWest_click();">
+   </div>
+   
    
     <p>Need help? Send me an <a href="mailto:joe.kariuki1@marist.edu" target="_top">Email</a></p>
 
+  <footer>
+      <p>Copyright &copy; 2017 Joe Kariuki. All Rights Reserved.</p>
+  </footer>
    
     
 </body>
