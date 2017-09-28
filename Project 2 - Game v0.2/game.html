@@ -12,53 +12,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
-    <title>Joe's Game</title>
+    <title>Cabin in the Woods | Joe's Game</title>
     <style>
-        body {
-            text-align: center;
-        }
+        
   
     </style>
     
-    <script type="text/javascript">
+    <script type = "text/javascript">
         
-    // Global Variables
-        var currentLoc = 0;
-        var score = 0;
-    
+    //Global Variables
+	var North = false
+	var South = false
+	var East = false
+	var West = false 
+	var score = 0
+	
+    // Global function for messaging to textbox
+		function displayText(message) {
+				var textarea = document.getElementById("taBox");
+				textarea.value = message;
+			}
+	//LOCATIONS
+        //Go North
+		function btnNorth_click() {
+			if (North == false) {
+			     var message = "You're standing in the middle of woods. It's 14°F. Move quickly before you freeze!";
+			     displayText(message);
+			     North = true;
+			     score += 5;
+			     document.getElementById("score").innerHTML = score;
+			} else {
+			     var message = "You're standing in the middle of woods. It's 14°F. Move quickly before you freeze!";
+			     displayText(message); }
+			}
+        //Go South
         
-    //Directional Event Handlers
+		function btnSouth_click() {
+			if (South == false) {
+			     var message = "You're standing at a lake. There's a canoe.";
+			     displayText(message);
+			     South = true;
+			     score += 5;
+			     document.getElementById("score").innerHTML = score;
+			} else {
+			     var message = "You're standing at a lake. There's a canoe.";
+			     displayText(message); }
+			}
         
-        function btnNorth_click() {
-            
-        }
+	   //Go East
+		function btnEast_click() {
+			if (East == false) {
+			     var message = "You are standing at a cliff. There's a bridge";
+			     displayText(message);
+			     East = true;
+			     score += 5;
+			     document.getElementById("score").innerHTML = score;
+			} else {
+			     var message = "You are standing at a cliff. There's a bridge";
+			     displayText(message); }
+			}
         
-    </script>
+        //Go West
+        function btnWest_click() {
+			if (West == false) {
+			     var message = "You're standing next to a highway";
+			     displayText(message);
+			     West = true;
+			     score += 5;
+			     document.getElementById("score").innerHTML = score;
+			} else {
+			     var message = "You're standing next to a highway";
+			     displayText(message); }
+			}
+        
+	</script>
 </head>
 
 <body>
-   <h1>Nightwalk of Terror</h1>
-   
-   <h5>Introduction</h5>
-   <p>You are standing at the end of a long dark haunted hallway. You're goal is to reach the end of the</p>
-   
-   <textarea name="game" id="taMain" cols="30" rows="20">You are at the begining</textarea>
-   
-   <br>
-   
-   <div class="directions">
-       <input type="button" value="North" onclick="btnNorth_click();">
-       <input type="button" value="South" onclick="btnSouth_click();">
-       <input type="button" value="East" onclick="btnEast_click();">
-       <input type="button" value="West" onclick="btnWest_click();">
-   </div>
-   
-   
-    <p>Need help? Send me an <a href="mailto:joe.kariuki1@marist.edu" target="_top">Email</a></p>
+          <div class="main">
+            <h1>Cabin in the Woods</h1>
+           <br>   
+           <textarea name="game" id="taBox" cols="60" rows="10" class="text-area">You're standing in front of on old cabin.</textarea>
 
-  <footer>
-      <p>Copyright &copy; 2017 Joe Kariuki. All Rights Reserved.</p>
-  </footer>
+           <br>
+
+            <p>You current score:</p> <a id="score">0</a> <p>points</p>
+
+           <div class="directions">
+               <input type="button" id="btnNorth" value="North" onclick="btnNorth_click();" class="btn">
+
+               <input type="button" id="btnSouth" value="South" onclick="btnSouth_click();" class="btn">
+
+               <input type="button" id="btnEast" value="East" onclick="btnEast_click();" class="btn">
+
+               <input type="button" id="btnWest" value="West" onclick="btnWest_click();" class="btn">
+           </div>
+
+
+            <p>Questions? Send me an <a href="mailto:joe.kariuki1@marist.edu" target="_top">Email</a></p>
+          </div>
+           
+      <footer>
+          <p>Copyright &copy; 2017 Joe Kariuki. All Rights Reserved.</p>
+      </footer>   
    
     
 </body>
