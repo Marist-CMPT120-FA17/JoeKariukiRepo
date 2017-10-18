@@ -1,0 +1,224 @@
+<!--
+    Joe Kariuki
+    16th October 2017
+    CMPT_120L_202_17F: Project 3 - Gamev0.4
+-->
+
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Walter+Turncoat|Kreon" rel="stylesheet">
+
+    <title>Cabin in the Woods | Joe's Game</title>
+    <style>
+        body {
+            text-align: center;
+            background-image: url("https://static.pexels.com/photos/79491/dark-creepy-spooky-woods-79491.jpeg");
+            background-position: center;
+            font-family: 'Kreon', serif;
+            letter-spacing: 2px;
+        }
+        
+        .main {
+            padding-top: 20px;
+        }
+        
+        .title {
+            padding-top: 20px;
+            color: #ffffff;
+            font-family: 'Walter Turncoat', cursive;
+        }
+        
+        h1 {
+            
+            font-size: 70px; 
+            letter-spacing: 10px;
+            line-height: 50px;
+        }
+        
+        h4 {
+            font-size: 30px;
+            margin: none;
+        }
+        
+        .text-area {
+            text-align: center;
+            font-size: 18px;
+            padding-top: 15px;
+        }
+        
+        .btn {
+            background-color: #ffffff;
+            color: #000000;
+            margin: 5px;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            background-color: #000000;
+            color: #ffffff;
+            
+        }
+        
+        .btn:active, btn:focus {
+            background-color: #000000;
+            color: #ffffff;
+            outline: none !important;
+        }
+        
+        .score {
+            color: #ffffff;
+            font-size: 18px;
+            padding-top: 10px;
+        }
+        
+        
+        #points {
+            color: #ffffff;
+            font-size: 25px;
+        }
+        
+        .email {
+            font-size: 15px;
+            color: #ffffff;
+            padding-top: 10px;
+        }
+        
+        i {
+            color: #ffffff;
+        }
+        
+        i:hover {
+            color: #000000;
+        }
+        
+        footer {
+            font-size: 12px;
+            color: #ffffff;
+        }
+        
+        footer p {
+            padding-top: 12px;
+            letter-spacing: 3px;
+        }
+  
+    </style>
+    
+    <script type = "text/javascript">
+        
+    //Global Variables
+	var North = false
+	var South = false
+	var East = false
+	var West = false 
+	var score = 0
+	
+    // Global function for messaging to textbox
+		function displayText(message) {
+				var textarea = document.getElementById("taBox");
+				textarea.value = message;
+			}
+	//LOCATIONS
+        //Go North
+		function btnNorth_click() {
+			if (North == false) {
+			     var message = "You're standing in the middle of woods. It's 14°F. Move quickly before you freeze!";
+			     displayText(message);
+			     North = true;
+                 score += 5;
+			     document.getElementById("points").innerHTML = score;
+			} else {
+			     var message = "You're standing in the middle of woods. It's 14°F. Move quickly before you freeze!";
+			     displayText(message); }
+			}
+        //Go South
+        
+		function btnSouth_click() {
+			if (South == false) {
+			     var message = "You're standing at a lake. You see smoke...";
+			     displayText(message);
+			     South = true;
+                 score += 5;
+			     document.getElementById("points").innerHTML = score;
+			} else {
+			     var message = "You're standing at a lake. You see smoke...";
+			     displayText(message); }
+			}
+        
+	   //Go East
+		function btnEast_click() {
+			if (East == false) {
+			     var message = "You are standing at a cliff. There's a car wheel near the cliff...";
+			     displayText(message);
+			     East = true;
+                 score += 5;
+			     document.getElementById("points").innerHTML = score;
+			} else {
+			     var message = "You are standing at a cliff. There's a car wheel near the cliff...";
+			     displayText(message); }
+			}
+        
+        //Go West
+        function btnWest_click() {
+			if (West == false) {
+			     var message = "You're standing next to a highway. There is a dead dear on the road and tyre marks on the road";
+			     displayText(message);
+			     West = true;
+                 score += 5;
+			     document.getElementById("points").innerHTML = score;
+			} else {
+			     var message = "You're standing next to a highway. There is a dead dear on the road and tyre marks on the road";
+			     displayText(message); }
+			}
+        
+        // The story is a puzzle. A car hit a dear and in doing so, the driver lost control and went over the cliff.
+        
+	</script>
+</head>
+
+<body>
+          <div class="main">
+             <div class="title">
+                  <h1>Cabin</h1> 
+                  <h4>in the</h4>
+                  <h1>Woods</h1>
+             </div>
+              
+           <br>   
+           <textarea name="game" id="taBox" cols="60" rows="10" class="text-area">You're standing in front of an old cabin.</textarea>
+
+           <br>
+            
+            <div class="score">
+                <p>You current score:</p> <p id="points">0</p> <p>Points</p>
+            </div>
+            
+
+           <div class="directions">
+               <input type="button" id="btnNorth" value="North" onclick="btnNorth_click();" class="btn">
+
+               <input type="button" id="btnSouth" value="South" onclick="btnSouth_click();" class="btn">
+
+               <input type="button" id="btnEast" value="East" onclick="btnEast_click();" class="btn">
+
+               <input type="button" id="btnWest" value="West" onclick="btnWest_click();" class="btn">
+           </div>
+
+            <div class="email">
+                <p>Questions? Send me an <a href="mailto:joe.kariuki1@marist.edu" target="_top"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                </p>
+            </div>
+          </div>
+           
+      <footer>
+          <p>MADE BY JOE KARIUKI</p>
+      </footer>   
+   
+    
+</body>
+</html>
