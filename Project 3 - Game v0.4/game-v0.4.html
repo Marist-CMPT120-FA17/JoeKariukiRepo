@@ -64,6 +64,7 @@
             border: 5px solid #ffffff;
             border-radius: 3px;
             text-align: center;
+
         }
         
         .btn {
@@ -148,6 +149,26 @@
 				var textarea = document.getElementById("taBox");
 				textarea.value = message;
 			}
+        
+        
+        
+    // User Commands
+        
+        function btnGo_click() {
+            var userText = document.getElementById("userInput").value;
+                if (userText === "N" || userText === "n") {
+						btnNorth_click();
+					} else if (userText === "S" || userText === "s") {
+						btnSouth_click();
+					} else if (userText === "E" || userText === "e") {
+						btnEast_click();
+					} else if (userText == "W" || userText === "w") {
+						btnWest_click();
+					} else {
+						var message = "Invalid Command only commands N, E, S, W are valid.";
+						updateDisplay(message);
+                       }
+            }
 	//LOCATIONS
         //Go North
 		function btnNorth_click() {
@@ -256,30 +277,6 @@
 			     updateDisplay(message); }
 			}
         
-        // User Command Function
-        	function btnGo_click() {
-            var userText = document.getElementById("textCommand").value;
-            var display = " ";
-            switch(userText) {
-                case 'n' || 'N': 
-                    break;
-                    display = btnNorth_click();
-                case 'e' || 'E':
-                    break;
-                    display = btnEast_click();
-                case 's' || 'S':
-                    break;
-                    display = btnSouth_click();
-                case 'w' || 'W':
-                    break;
-                    display = btnWest_click();
-                default:
-                    display = 'Invalid Command only commands N,E,S,W are valid.';
-                       }
-            }
-           
-            
-        
         
 	</script>
 </head>
@@ -303,8 +300,10 @@
             
            <div class="directions">
               <div class="user-input">
-                <input type="text" id="textCommand" name="textCommand" class="input">
-		        <input type="button" value="Go" onclick="btnGo_click();" class="btn" />
+               <textarea name="game" id="userInput" cols="20" rows="1" class="input" placeholder="Input a Command"></textarea>
+               
+		        <input type="button"  id="go" value="Go" onclick="btnGo_click()" class="btn go" />
+             
               </div>
               
              <br>
