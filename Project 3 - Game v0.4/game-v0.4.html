@@ -52,6 +52,20 @@
             padding-top: 15px;
         }
         
+        .user-input {
+            padding: 5px;
+        }
+        
+        .input {
+            background-color: #ffffff;
+            color: #000000;
+            margin: 5px;
+            font-weight: 600;
+            border: 5px solid #ffffff;
+            border-radius: 3px;
+            text-align: center;
+        }
+        
         .btn {
             background-color: #ffffff;
             color: #000000;
@@ -83,6 +97,12 @@
             font-size: 25px;
         }
         
+        .directions h4 {
+            color: #ffffff;
+            font-size: 20px;
+            padding-bottom: 10px;
+            padding-top: 10px;;
+        }
         .email {
             font-size: 15px;
             color: #ffffff;
@@ -113,13 +133,18 @@
         
     //Global Variables
 	var North = false
+    var NorthEast = false
+    var East = false
+    var SouthEast = false
 	var South = false
-	var East = false
+    var SouthWest = false
 	var West = false 
+    var NorthWest = false
+    
 	var score = 0
 	
     // Global function for messaging to textbox
-		function displayText(message) {
+		function updateDisplay(message) {
 				var textarea = document.getElementById("taBox");
 				textarea.value = message;
 			}
@@ -127,56 +152,110 @@
         //Go North
 		function btnNorth_click() {
 			if (North == false) {
-			     var message = "You're standing in the middle of woods. It's 14°F. Move quickly before you freeze!";
-			     displayText(message);
+			     var message = " You're standing in the middle of a forest. You hear a loud howling ";
+			    updateDisplay(message);
 			     North = true;
                  score += 5;
 			     document.getElementById("points").innerHTML = score;
 			} else {
-			     var message = "You're standing in the middle of woods. It's 14°F. Move quickly before you freeze!";
-			     displayText(message); }
+			     var message = " You're standing in the middle of a forest. You hear a loud howling ";
+			     updateDisplay(message); 
+            }
 			}
-        //Go South
         
-		function btnSouth_click() {
-			if (South == false) {
-			     var message = "You're standing at a lake. You see smoke...";
-			     displayText(message);
-			     South = true;
+        //Go North East
+		function btnNorthEast_click() {
+			if (NorthEast == false) {
+			     var message = " You're standing at a lake. You hear a person screaming ";
+			     updateDisplay(message);
+			     NorthEast = true;
                  score += 5;
 			     document.getElementById("points").innerHTML = score;
 			} else {
-			     var message = "You're standing at a lake. You see smoke...";
-			     displayText(message); }
+			     var message = " You're standing at a lake. You hear a person screaming ";
+			     updateDisplay(message); 
+            }
 			}
-        
-	   //Go East
+        //Go East
 		function btnEast_click() {
 			if (East == false) {
-			     var message = "You are standing at a cliff. There's a car wheel near the cliff...";
-			     displayText(message);
+			     var message = " You are standing at a cliff. There's a torn t-shirt near the cliff ";
+			     updateDisplay(message);
 			     East = true;
                  score += 5;
 			     document.getElementById("points").innerHTML = score;
 			} else {
-			     var message = "You are standing at a cliff. There's a car wheel near the cliff...";
-			     displayText(message); }
+			     var message = " You are standing at a cliff. There's a torn t-shirt near the cliff ";
+			    updateDisplay(message); 
+                }
+			}  
+        
+        //Go South East
+        
+		function btnSouthEast_click() {
+			if (SouthEast == false) {
+			     var message = " You're standing next to a highway. There is a dead body with claw marks on it ";
+			     updateDisplay(message);
+			     SouthEast = true;
+                 score += 5;
+			     document.getElementById("points").innerHTML = score;
+			} else {
+			     var message = " You're standing next to a highway. There is a dead body with claw marks on it ";
+			     updateDisplay(message); }
 			}
         
-        //Go West
+	   //Go South
+		function btnSouth_click() {
+			if (South == false) {
+			     var message = " You're next to a pine tree. You see a large paw print with blood covering it ";
+			     updateDisplay(message);
+			     South = true;
+                 score += 5;
+			     document.getElementById("points").innerHTML = score;
+			} else {
+			     var message = " You're next to a pine tree. You see a large paw print with blood covering it ";
+			     updateDisplay(message); }
+			}
+        
+        //Go South West
+        function btnSouthWest_click() {
+			if (SouthWest == false) {
+			     var message = "You are standing in front of a large cave. You hear growling ";
+			     updateDisplay(message);
+			     SouthWest = true;
+                 score += 5;
+			     document.getElementById("points").innerHTML = score;
+			} else {
+			     var message = " You're standing in front of a large cave. You hear growling ";
+			     updateDisplay(message); }
+			}
+        
+        //West
         function btnWest_click() {
 			if (West == false) {
-			     var message = "You're standing next to a highway. There is a dead dear on the road and tyre marks on the road";
-			     displayText(message);
+			     var message = "You're inside the large, dark cave. The growling is louder!";
+			     updateDisplay(message);
 			     West = true;
                  score += 5;
 			     document.getElementById("points").innerHTML = score;
 			} else {
-			     var message = "You're standing next to a highway. There is a dead dear on the road and tyre marks on the road";
-			     displayText(message); }
+			     var message = " You're inside the large, dark cave. The growling is louder! ";
+			     updateDisplay(message); }
+			} 
+        
+        //North West
+        function btnNorthWest_click() {
+			if (NorthWest == false) {
+			     var message = " You are attacked by your pet german shepherd. It licks you to death! ";
+			     updateDisplay(message);
+			     NorthWest = true;
+                 score += 5;
+			     document.getElementById("points").innerHTML = score;
+			} else {
+			     var message = " You are attacked by your pet german shepherd. It licks you to death! ";
+			     updateDisplay(message); }
 			}
         
-        // The story is a puzzle. A car hit a dear and in doing so, the driver lost control and went over the cliff.
         
 	</script>
 </head>
@@ -198,15 +277,33 @@
                 <p>You current score:</p> <p id="points">0</p> <p>Points</p>
             </div>
             
-
            <div class="directions">
+              <div class="user-input">
+                <input type="text" id="textCommand" name="textCommand" class="input">
+		        <input type="button" value="Go" onclick="BtnGo_click();" class="btn" />
+              </div>
+              
+             <br>
+              <h4>Directions</h4>
+              
                <input type="button" id="btnNorth" value="North" onclick="btnNorth_click();" class="btn">
+               
+               <input type="button" id="btnNorthEast" value="NorthEast" onclick="btnNorthEast_click();" class="btn">
 
                <input type="button" id="btnSouth" value="South" onclick="btnSouth_click();" class="btn">
+               
+               
+               <input type="button" id="btnSouthWest" value="SouthWest" onclick="btnSouthWest_click();" class="btn">
+               
+               <br>
 
                <input type="button" id="btnEast" value="East" onclick="btnEast_click();" class="btn">
+               
+               <input type="button" id="btnSouthEast" value="SouthEast" onclick="btnSouthEast_click();" class="btn">
 
                <input type="button" id="btnWest" value="West" onclick="btnWest_click();" class="btn">
+               
+               <input type="button" id="btnNorthWest" value="NorthWest" onclick="btnNorthWest_click();" class="btn">
            </div>
 
             <div class="email">
