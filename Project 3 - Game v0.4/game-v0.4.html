@@ -256,6 +256,30 @@
 			     updateDisplay(message); }
 			}
         
+        // User Command Function
+        	function btnGo_click() {
+            var userText = document.getElementById("textCommand").value;
+            var display = " ";
+            switch(userText) {
+                case 'n' || 'N': 
+                    break;
+                    display = btnNorth_click();
+                case 'e' || 'E':
+                    break;
+                    display = btnEast_click();
+                case 's' || 'S':
+                    break;
+                    display = btnSouth_click();
+                case 'w' || 'W':
+                    break;
+                    display = btnWest_click();
+                default:
+                    display = 'Invalid Command only commands N,E,S,W are valid.';
+                       }
+            }
+           
+            
+        
         
 	</script>
 </head>
@@ -280,7 +304,7 @@
            <div class="directions">
               <div class="user-input">
                 <input type="text" id="textCommand" name="textCommand" class="input">
-		        <input type="button" value="Go" onclick="BtnGo_click();" class="btn" />
+		        <input type="button" value="Go" onclick="btnGo_click();" class="btn" />
               </div>
               
              <br>
