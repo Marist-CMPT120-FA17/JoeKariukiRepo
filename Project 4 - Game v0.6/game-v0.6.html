@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Walter+Turncoat|Kreon" rel="stylesheet">
+    <title>Cabin in the Woods | Joe Kariuki's Game</title>
+    <style>
+        body {
+            text-align: center;
+            background-image: url("https://static.pexels.com/photos/79491/dark-creepy-spooky-woods-79491.jpeg");
+            background-position: center;
+            font-family: 'Kreon', serif;
+            letter-spacing: 2px;
+        }
+        
+        .main {
+            padding-top: 20px;
+        }
+        
+        .title {
+            padding-top: 20px;
+            color: #ffffff;
+            font-family: 'Walter Turncoat', cursive;
+        }
+        
+        h1 {
+            
+            font-size: 70px; 
+            letter-spacing: 10px;
+            line-height: 50px;
+        }
+        
+        h4 {
+            font-size: 20px;
+            margin: none;
+            color: #ffffff;
+        }
+        
+        .text-area {
+            text-align: center;
+            font-size: 18px;
+            padding-top: 15px;
+        }
+        
+        .user-input {
+            padding: 5px;
+        }
+        
+        .input {
+            background-color: #ffffff;
+            color: #000000;
+            margin: 5px;
+            font-weight: 600;
+            border: 5px solid #ffffff;
+            border-radius: 3px;
+            text-align: center;
+
+        }
+        
+        .btn {
+            background-color: #ffffff;
+            color: #000000;
+            margin: 5px;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            background-color: #000000;
+            color: #ffffff;
+            
+        }
+        
+        .btn:active, btn:focus {
+            background-color: #000000;
+            color: #ffffff;
+            outline: none !important;
+        }
+        
+        .score {
+            color: #ffffff;
+            font-size: 18px;
+            padding-top: 10px;
+        }
+        
+        
+        #points {
+            color: #ffffff;
+            font-size: 25px;
+        }
+        
+        .directions h4 {
+            color: #ffffff;
+            font-size: 20px;
+            padding-bottom: 10px;
+            padding-top: 10px;;
+        }
+        .email {
+            font-size: 15px;
+            color: #ffffff;
+            padding-top: 10px;
+        }
+        
+        i {
+            color: #ffffff;
+        }
+        
+        i:hover {
+            color: #000000;
+        }
+        
+        footer {
+            font-size: 12px;
+            color: #ffffff;
+        }
+        
+        footer p {
+            padding-top: 12px;
+            letter-spacing: 3px;
+        }
+  
+    </style>
+    
+    <script type = "text/javascript">
+    
+	//Global variables
+	var score = 0;
+    var currentLoc = 0;
+   //Variables for score
+    var visitLoc0 = 0;
+    var visitLoc1 = 0;
+    var visitLoc2 = 0;
+    var visitLoc3 = 0;
+    var visitLoc4 = 0;
+    var visitLoc5 = 0;
+    
+    //Starts look()
+	function init() {
+            look();
+        }
+        
+    //User Commands
+	   function btnGo_click() {
+        var userText = document.getElementById("userInput").value;
+        var response = "";
+            if (userText === "n" || userText === "N") {
+                response = btnNorth_click();
+            } else {
+                if (userText === "s" || userText === "S") {
+                    response = btnSouth_click();
+                } else {
+                    if (userText === "e" || userText === "E") {
+                        response = btnEast_click();
+                    } else {
+                        if (userText === "w" || userText === "W") {
+                            response = btnWest_click();
+                        } else {
+										var textarea = document.getElementById("textarea");
+										textarea.value = "Invalid Commands! Only N, n, S, s, E, e and W, w are valid";
+                        }
+                    }
+                }
+            }
+       }
+        
+	//LOCATIONS
+        //Forest
+        
+		function start() {
+			var message = "You're standing in the middle of a forest. You hear a loud howling";
+			updateDisplay(message);
+			if (visitLoc0 ==0) {
+				score +=5;
+				document.getElementById("points").innerHTML = score;
+				visitLoc0 = 1;
+				} else {
+				var message = "You're standing in the middle of a forest. You hear a loud howling";
+				updateDisplay(message);
+				}
+		}
+        
+        //Lake
+		function firstNorthBtn() {
+			var message = "You're standing at a lake. You hear a person screaming ";
+			updateDisplay(message);
+			 if (visitLoc1 == 0) {
+                    score += 5;
+                    document.getElementById("points").innerHTML = score;
+                    visitLoc1 = 1;
+                } else {
+                    var message = "You're standing at a lake. You hear a person screaming ";
+					updateDisplay(message);
+				}
+		}
+        
+        //Cliff
+		function secondNorthBtn() {
+			var message = "You are standing at a cliff. There's a torn t-shirt near the cliff";
+			updateDisplay(message);
+			 if (visitLoc5 == 0) {
+                    score += 5;
+                    document.getElementById("points").innerHTML = score;
+                    visitLoc5 = 1;
+                } else {
+                    var message = "You are standing at a cliff. There's a torn t-shirt near the cliff";
+					updateDisplay(message);
+				}
+		}
+        
+        //Highway
+		function southBtn() {
+			var message = "You're standing next to a highway. There is a dead body with claw marks on it";
+			updateDisplay(message);
+			 if (visitLoc2 == 0) {
+                    score += 5;
+                    document.getElementById("points").innerHTML = score;
+                    visitLoc2 = 1;
+                } else {
+					var message = "You're standing next to a highway. There is a dead body with claw marks on it";
+					updateDisplay(message); 
+				}
+		}
+        
+        //Pine tree
+		function eastBtn() {
+			var message = "You're next to a pine tree. You see a large paw print with blood covering it";
+			updateDisplay(message);
+			 if (visitLoc3 == 0) {
+                    score += 5;
+                    document.getElementById("points").innerHTML = score;
+                    visitLoc3 = 1;
+                } else {
+					var message = "You're next to a pine tree. You see a large paw print with blood covering it";
+					updateDisplay(message);
+				}
+		}
+        
+        //Cave
+		function westBtn()	{
+			var message = "You are standing in front of a large cave. You hear growling"
+			updateDisplay(message);
+			 if (visitLoc4 == 0) {
+                    score += 5;
+                    document.getElementById("points").innerHTML = score;
+                    visitLoc4 = 1;
+                } else {
+                var message = "You are standing in front of a large cave. You hear growling"
+				updateDisplay(message);
+				}
+		}
+        
+	//DIRECTIONS
+        
+	//Go North
+        function btnNorth_click() {
+            if (currentLoc === 0) {
+                currentLoc = 1;
+                look();
+                document.getElementById("btnEast").disabled = true;
+                document.getElementById("btnWest").disabled = true;
+                document.getElementById("btnSouth").disabled = false;
+                document.getElementById("btnNorth").disabled = false;
+            } else {
+                if (currentLoc === 1) {
+                    currentLoc = 5;
+                    look();
+                    document.getElementById("btnEast").disabled = true;
+                    document.getElementById("btnWest").disabled = true;
+                    document.getElementById("btnSouth").disabled = false;
+                    document.getElementById("btnNorth").disabled = true;
+                } else {
+                    if (currentLoc === 2) {
+                        currentLoc = 0;
+                        look();
+                        document.getElementById("btnEast").disabled = false;
+                        document.getElementById("btnWest").disabled = false;
+                        document.getElementById("btnSouth").disabled = false;
+                        document.getElementById("btnNorth").disabled = false;
+                    }
+                }
+            }
+            look();
+        }
+    //Go South
+        function btnSouth_click() {
+            if (currentLoc === 0) {
+                currentLoc = 2;
+                look();
+                document.getElementById("btnEast").disabled = true;
+                document.getElementById("btnWest").disabled = true;
+                document.getElementById("btnSouth").disabled = true;
+                document.getElementById("btnNorth").disabled = false;
+            } else {
+                if (currentLoc === 5) {
+                    currentLoc = 1;
+                    look();
+                    document.getElementById("btnEast").disabled = true;
+                    document.getElementById("btnWest").disabled = true;
+                    document.getElementById("btnSouth").disabled = false;
+                    document.getElementById("btnNorth").disabled = false;
+                } else {
+                    if (currentLoc === 1) {
+                        currentLoc = 0;
+                        look();
+                        document.getElementById("btnEast").disabled = false;
+                        document.getElementById("btnWest").disabled = false;
+                        document.getElementById("btnSouth").disabled = false;
+                        document.getElementById("btnNorth").disabled = false;
+                    }
+                }
+            }
+            look();
+        }
+    //Go East
+        function btnEast_click() {
+            if (currentLoc === 0) {
+                currentLoc = 3;
+                look();
+                document.getElementById("btnEast").disabled = true;
+                document.getElementById("btnWest").disabled = false;
+                document.getElementById("btnSouth").disabled = true;
+                document.getElementById("btnNorth").disabled = true;
+            } else {
+                if (currentLoc === 4) {
+                    currentLoc = 0;
+                    look();
+                    document.getElementById("btnEast").disabled = false;
+                    document.getElementById("btnWest").disabled = false;
+                    document.getElementById("btnSouth").disabled = false;
+                    document.getElementById("btnNorth").disabled = false;
+				}
+            }
+            look();
+        }
+    //Go West
+        function btnWest_click() {
+            if (currentLoc === 0) {
+                currentLoc = 4;
+                look();
+                document.getElementById("btnEast").disabled = false;
+                document.getElementById("btnWest").disabled = true;
+                document.getElementById("btnSouth").disabled = true;
+                document.getElementById("btnNorth").disabled = true;
+            } else {
+                if (currentLoc === 3) {
+                    currentLoc = 0;
+                    look();
+                    document.getElementById("btnEast").disabled = false;
+                    document.getElementById("btnWest").disabled = false;
+                    document.getElementById("btnSouth").disabled = false;
+                    document.getElementById("btnNorth").disabled = false;
+                
+                }
+            }
+            look();
+        }
+    //look() descriptions featuring switch-case    
+		function look() {
+            var desc = "";
+            switch (currentLoc) {
+                case 0: start();
+					break;
+				case 1: firstNorthBtn();
+					break;
+				case 2: southBtn();
+					break;
+				case 3: eastBtn();
+					break;
+				case 4: westBtn();
+					break;
+				case 5: secondNorthBtn();
+					break;
+				default: "Invalid! Try again."
+            }
+        }
+        
+	//Textarea for var message for each button, coming from each locations function
+        function updateDisplay(MSGTA) {
+            var textarea = document.getElementById("textarea");
+            textarea.value = MSGTA;
+        }
+	</script>
+</head>
+
+<body>
+  <div class="main">
+             <div class="title">
+                  <h1>Cabin</h1> 
+                  <h4>in the</h4>
+                  <h1>Woods</h1>
+             </div>
+              <br>   
+           <textarea name="textarea" readonly id="textarea" cols="40" rows="10" class="text-area">You're standing in front of an old cabin.</textarea>
+           
+           <div class="score">
+                <p>You current score:</p> <p id="points">0</p> <p>Points</p>
+            </div>
+            
+            <div class="directions">
+              <div class="user-input">
+               <textarea name="userInput" id="userInput" cols="20" rows="1" class="input" placeholder="Input a Command"></textarea>
+               
+		        <input type="button"  id="go" value="Go" onclick="btnGo_click()" class="btn go" />
+             
+              </div>
+      </div>
+    
+	<br>
+	   <h4>Directions</h4>
+
+		<input type="button" value="North" onclick= "btnNorth_click();" id="btnNorth" class="btn"/>
+		
+		<input type="button" value="South" onclick="btnSouth_click();" id="btnSouth" class="btn"/>
+		
+		<input type="button" value="East" onclick="btnEast_click();" id="btnEast" class="btn"/>
+		
+		<input type="button" value="West" onclick="btnWest_click();" id="btnWest" class="btn"/>
+
+	 <div class="email">
+                <p>Questions? Send me an <a href="mailto:joe.kariuki1@marist.edu" target="_top"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                </p>
+            </div>
+	</div>
+	<footer>
+          <p>MADE BY JOE KARIUKI</p>
+      </footer>
+</body>
+</html>
+
+
+
+
