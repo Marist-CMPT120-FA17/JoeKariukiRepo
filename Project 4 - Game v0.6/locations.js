@@ -90,7 +90,7 @@
  }
 
  function pineTree() {
-     var message = "You're next to a pine tree. You see a large paw print on the floor";
+     var message = "You reach the end of the forest. You cannot go any further";
      updateDisplay(message);
      if (visitLoc3 == 0) {
          score += 5;
@@ -236,10 +236,11 @@ function look() {
      if (currentLoc === 0) {
          currentLoc = 1;
          look();
-         document.getElementById("btnEast").disabled = true;
-         document.getElementById("btnWest").disabled = true;
+         document.getElementById("btnEast").disabled = false;
+         document.getElementById("btnWest").disabled = false;
          document.getElementById("btnSouth").disabled = false;
          document.getElementById("btnNorth").disabled = false;
+
      } else {
          if (currentLoc === 1) {
              currentLoc = 2;
@@ -247,15 +248,15 @@ function look() {
              document.getElementById("btnEast").disabled = true;
              document.getElementById("btnWest").disabled = true;
              document.getElementById("btnSouth").disabled = false;
-             document.getElementById("btnNorth").disabled = true;
+             document.getElementById("btnNorth").disabled = false;
          } else {
-             if (currentLoc === 4) {
-                 currentLoc = 0;
+             if (currentLoc === 2) {
+                 currentLoc = 3;
                  look();
-                 document.getElementById("btnEast").disabled = false;
-                 document.getElementById("btnWest").disabled = false;
+                 document.getElementById("btnEast").disabled = true;
+                 document.getElementById("btnWest").disabled = true;
                  document.getElementById("btnSouth").disabled = false;
-                 document.getElementById("btnNorth").disabled = false;
+                 document.getElementById("btnNorth").disabled = true;
              }
          }
      }
@@ -264,24 +265,24 @@ function look() {
 
  //South
  function btnSouth_click() {
-     if (currentLoc === 2) {
-         currentLoc = 1;
+     if (currentLoc === 3) {
+         currentLoc = 2;
          look();
          document.getElementById("btnEast").disabled = true;
          document.getElementById("btnWest").disabled = true;
          document.getElementById("btnSouth").disabled = false;
          document.getElementById("btnNorth").disabled = false;
      } else {
-         if (currentLoc === 1) {
-             currentLoc = 0;
+         if (currentLoc === 2) {
+             currentLoc = 1;
              look();
              document.getElementById("btnEast").disabled = false;
              document.getElementById("btnWest").disabled = false;
              document.getElementById("btnSouth").disabled = false;
              document.getElementById("btnNorth").disabled = false;
          } else {
-             if (currentLoc === 0) {
-                 currentLoc = 4;
+             if (currentLoc === 1) {
+                 currentLoc = 0;
                  look();
                  document.getElementById("btnEast").disabled = true;
                  document.getElementById("btnWest").disabled = true;
@@ -295,16 +296,16 @@ function look() {
 
  //East
  function btnEast_click() {
-     if (currentLoc === 0) {
-         currentLoc = 10;
+     if (currentLoc === 1) {
+         currentLoc = 8;
          look();
          document.getElementById("btnEast").disabled = false;
          document.getElementById("btnWest").disabled = false;
          document.getElementById("btnSouth").disabled = true;
          document.getElementById("btnNorth").disabled = true;
      } else {
-         if (currentLoc === 10) {
-             currentLoc = 3;
+         if (currentLoc === 8) {
+             currentLoc = 9;
              look();
              document.getElementById("btnEast").disabled = false;
              document.getElementById("btnWest").disabled = false;
@@ -312,44 +313,35 @@ function look() {
              document.getElementById("btnNorth").disabled = true;
          } else {
              if (currentLoc === 9) {
-                 currentLoc = 5;
+                 currentLoc = 4;
                  look();
                  document.getElementById("btnEast").disabled = false;
                  document.getElementById("btnWest").disabled = false;
                  document.getElementById("btnSouth").disabled = true;
                  document.getElementById("btnNorth").disabled = true;
              } else {
-                 if (currentLoc === 3) {
-                     currentLoc = 7;
+                 if (currentLoc === 4) {
+                     currentLoc = 5;
                      look();
                      document.getElementById("btnEast").disabled = false;
                      document.getElementById("btnWest").disabled = false;
                      document.getElementById("btnSouth").disabled = true;
                      document.getElementById("btnNorth").disabled = true;
+                 
                  } else {
-                     if (currentLoc === 7) {
-                         currentLoc = 8;
+                     if (currentLoc === 4) {
+                         currentLoc = 0;
                          look();
                          document.getElementById("btnEast").disabled = true;
                          document.getElementById("btnWest").disabled = false;
                          document.getElementById("btnSouth").disabled = true;
                          document.getElementById("btnNorth").disabled = true;
-                     } else {
-                         if (currentLoc === 5) {
-                             currentLoc = 0;
-                             look();
-                             document.getElementById("btnEast").disabled = false;
-                             document.getElementById("btnWest").disabled = false;
-                             document.getElementById("btnSouth").disabled = false;
-                             document.getElementById("btnNorth").disabled = false;
-
-                         }
-                     }
+                     } 
                  }
+                 
              }
          }
      }
-     look();
  }
  //West
  function btnWest_click() {
