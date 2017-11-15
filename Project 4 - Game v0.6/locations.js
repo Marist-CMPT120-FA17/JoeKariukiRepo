@@ -37,7 +37,12 @@
                         if (userText === "w" || userText === "W") {
                             response = btnWest_click();
                         } else {
-				            errorMsg();
+                            if (userText === "help")
+                                {
+                                    response = help();
+                                } else {
+                                    errorMsg();
+                                }
                         }
                     }
                 }
@@ -152,7 +157,7 @@ function insideCave() {
  }
 
  function cliff() {
-     var message = "You are standing near a cliff. There is a lighthouse in the distance";
+     var message = "You are standing at the edge of a cliff. There is a lighthouse in the distance";
      updateDisplay(message);
      if (visitLoc7 == 0) {
          score += 5;
@@ -392,6 +397,13 @@ function look() {
     look();
    }
  }
+
+// HELP FUNCTION
+function help() {
+	alert("Click the directional buttons to change locations or enter the commands: N, S, E, W, n, s, e, w to change locations.  Locations and compass are displayed.");
+	var message = "Click the directional buttons to change locations or enter the commands: N, S, E, W, n, s, e, w to change locations.  Locations and compass are displayed.";
+	updateDisplay(message);
+}
 
 
 //Update Text Display
