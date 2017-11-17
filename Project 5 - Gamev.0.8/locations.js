@@ -1,8 +1,4 @@
-//Calls look()
-	function init() {
-            look();
-    }
-        
+
 
 //Global variables
 	var score = 0;
@@ -49,19 +45,19 @@ var item3 = new items(6, "torch", "You've picked up a torch");
 var item4 = new items(9, "sea shells", "You've picked up a sea shell");
 
 // Location Variables
-var terrace = new Location(0,"terrace", "You are sitting comfortably on a rocking chair infront of a cabin. You're about to read a book when suddenly you hear a strange sound", item1);
-var frontCabin = new Location(1, "frontCabin", "You are standing in front of the cabin. A dog runs towards you to greet you!");
-var forest = new Location(2, "forest", "You're standing in the middle of a forest. You hear the sounds of owls hooting");
-var pineTree = new Location(3, "pineTree", "You reach the end of the forest. There's a large pine tree with pine cones every where. You cannot go any further", item3);
-var cave = new Location(4, "cave", "You are standing in front of a large cave. You try to see what's inside the cave but it is too dark. There's a torch lying near you.", item3);
-var insideCave = new Location(5, "insideCave", "You are standing inside the cave. It's very dark and cold. You see cave paintings on the walls. You reach a dead end!");
-var  road = new Location(6, "road", "You are standing next to a country road, from here you can see a picture of a town.");
-var cliff = new Location(7, "cliff", "You are standing at the edge of a cliff. There is a lighthouse in the distance");
-var lake = new Location(8, "lake", "You are standing near a lake. You hear screaming.");
-var beach = new Location(9, "beach", "You are standing at the beach of the lake. You see children playing in the lake. There are sea shells everywhere.", item4);
+var loc_porch = new Location(0,"terrace", "You are sitting comfortably on a rocking chair infront of a cabin. You're about to read a book when suddenly you hear a strange sound", item1);
+var loc_frontCabin = new Location(1, "frontCabin", "You are standing in front of the cabin. A dog runs towards you to greet you!");
+var loc_forest = new Location(2, "forest", "You're standing in the middle of a forest. You hear the sounds of owls hooting");
+var loc_pineTree = new Location(3, "pineTree", "You reach the end of the forest. There's a large pine tree with pine cones every where. You cannot go any further", item3);
+var loc_cave = new Location(4, "cave", "You are standing in front of a large cave. You try to see what's inside the cave but it is too dark. There's a torch lying near you.", item3);
+var loc_insideCave = new Location(5, "insideCave", "You are standing inside the cave. It's very dark and cold. You see cave paintings on the walls. You reach a dead end!");
+var loc_road = new Location(6, "road", "You are standing next to a country road, from here you can see a picture of a town.");
+var loc_cliff = new Location(7, "cliff", "You are standing at the edge of a cliff. There is a lighthouse in the distance");
+var loc_lake = new Location(8, "lake", "You are standing near a lake. You hear screaming.");
+var loc_beach = new Location(9, "beach", "You are standing at the beach of the lake. You see children playing in the lake. There are sea shells everywhere.", item4);
 
 //Global Location Array
-var glocations = [porch, frontCabin, forest, pineTree, cave, insideCave, road, cliff, lake, beach];
+var gLocations = [loc_porch, loc_frontCabin, loc_forest, loc_pineTree, loc_cave, loc_insideCave, loc_road, loc_cliff, loc_lake, loc_beach];
 
 
 
@@ -107,19 +103,19 @@ var glocations = [porch, frontCabin, forest, pineTree, cave, insideCave, road, c
         }
 //Take Item
         function itemTake(){
-          if (gLocations[pos].item == undefined){
+          if (gLocations[currentLoc].item == undefined){
             alert("There is no item to take!");
           }
           else{
-            gItems.push(gLocations[pos].item);
+            gItems.push(gLocations[currentLoc].item);
             inventoryList += gItems[gItems.length-1].name + "\n";
-            gLocations[pos].item = undefined;
+            gLocations[currentLoc].item = undefined;
             updateDisplay(gItems[gItems.length-1].description);
           }
         }
 
 //Inventory
-        function Inventory(){
+        function inventory(){
           if (gItems.length == 0){
             alert("No items in Inventory.\n");
           }
@@ -127,6 +123,7 @@ var glocations = [porch, frontCabin, forest, pineTree, cave, insideCave, road, c
             alert(inventoryList);
           }
         }
+        
      
 //LOCATION FUNCTIONS
 
@@ -211,7 +208,6 @@ var glocations = [porch, frontCabin, forest, pineTree, cave, insideCave, road, c
   }
   
 
-
 function look() {
      var desc = "";
      switch (currentLoc) {
@@ -248,6 +244,11 @@ function look() {
              default: "You cannot go that way!";
      }
  }
+
+//Calls look()
+	function init() {
+            look();
+    }
 
 //Button Handlers for Directions
  //North
