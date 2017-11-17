@@ -138,7 +138,13 @@
     <script type = "text/javascript" src="locations.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="init();">
+ 
+ <script>
+    
+    
+    
+    </script>
   <div class="main">
              <div class="title">
                   <h1>Cabin</h1> 
@@ -156,7 +162,8 @@
               <div class="user-input">
                <textarea name="userInput" id="userInput" cols="20" rows="1" class="input" placeholder="Input a Command"></textarea>
                
-		        <input type="button"  id="go" value="Go" onclick="btnGo_click()" class="btn go"/>
+		        <input type="button"  id="go" value="Go" onclick="btnGo_click()" class="btn go" />
+            <input type="button" value="View Inventory List" id = "inventory" onclick="Inventory()" />  
              
               </div>
       </div>
