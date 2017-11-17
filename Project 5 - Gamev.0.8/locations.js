@@ -40,15 +40,15 @@ function Location(id,name,description, item)
 
 // Item Variables
 var item1 = new items(0, "book", "You've collected the book");
-var item2 = new items(3, "pine cones", "You've collected a pine cone");
+var item2 = new items(3, "pine cones", "You've collected pine cones");
 var item3 = new items(6, "torch", "You've picked up a torch");
 var item4 = new items(9, "sea shells", "You've picked up a sea shell");
 
 // Location Variables
-var loc_porch = new Location(0,"terrace", "You are sitting comfortably on a rocking chair infront of a cabin. You're about to read a book when suddenly you hear a strange sound", item1);
+var loc_porch = new Location(0,"terrace", "You are sitting comfortably on a rocking chair infront of a cabin. You're about to read a book when suddenly you hear a strange sound. You can pick the book with you", item1);
 var loc_frontCabin = new Location(1, "frontCabin", "You are standing in front of the cabin. A dog runs towards you to greet you!");
 var loc_forest = new Location(2, "forest", "You're standing in the middle of a forest. You hear the sounds of owls hooting");
-var loc_pineTree = new Location(3, "pineTree", "You reach the end of the forest. There's a large pine tree with pine cones every where. You cannot go any further", item3);
+var loc_pineTree = new Location(3, "pineTree", "You reach the end of the forest. There's a large pine tree with pine cones every where. Pick them up!", item2);
 var loc_cave = new Location(4, "cave", "You are standing in front of a large cave. You try to see what's inside the cave but it is too dark. There's a torch lying near you.", item3);
 var loc_insideCave = new Location(5, "insideCave", "You are standing inside the cave. It's very dark and cold. You see cave paintings on the walls. You reach a dead end!");
 var loc_road = new Location(6, "road", "You are standing next to a country road, from here you can see a picture of a town.");
@@ -81,6 +81,8 @@ var gLocations = [loc_porch, loc_frontCabin, loc_forest, loc_pineTree, loc_cave,
                                     response = help();
                                 } else if (userText === "Take" || userText === "take") {
                                    itemTake();
+                                } else if (userText == "list") {
+                                    inventory();
                                 } else {
                                     errorMsg();
                                 }
@@ -476,8 +478,7 @@ function look() {
 
 // HELP FUNCTION
 function help() {
-	alert("Click the directional buttons to change locations or enter the commands: N, S, E, W, n, s, e, w to change locations.  Locations and compass are displayed.");
-	var message = "Click the directional buttons to change locations or enter the commands: N, S, E, W, n, s, e, w to change locations.  Locations and compass are displayed.";
+	var message = "Click the directional buttons to change locations or enter the commands: N, S, E, W, n, s, e, w to change locations.  Locations and compass are displayed. To pick an item, type in the word \"take\". To list your inventory, type in the word \"list\" ";
 	updateDisplay(message);
 }
 
