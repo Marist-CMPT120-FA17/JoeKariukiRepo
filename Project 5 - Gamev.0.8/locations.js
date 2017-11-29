@@ -435,47 +435,6 @@ function look() {
    }
  }
 
-
-// SCORE FUNCTION
-
-/* 
- function userScore() {
-    if (!visitLoc0 && currentLoc === 0) {
-            score = score + 5;
-            visitLoc0 = true;
-    } else if (!Library1 && currentLoc === 1) {
-        score = score + 5;
-        visitLoc1 = true;
-    } else if (!Hancock2 && currentLoc === 2) {
-        score = score + 5;
-        visitLoc2 = true;
-    } else if (!River3 && currentLoc === 3) {
-        score = score + 5;
-        visitLoc3 = true;
-    } else if (!Underpass4 && currentLoc === 4) {
-        score = score + 5;
-        visitLoc4 = true;
-    } else if (!AlliedHealth5 && currentLoc === 5) {
-        score = score + 5;
-        visitLoc5 = true;
-    } else if (!McCann6 && currentLoc === 6) {
-        score = score + 5;
-        visitLoc6 = true;
-    } else if (!Donnelly7 && currentLoc === 7) {
-        score = score + 5;
-        visitLoc7 = true;
-    } else if (!TenneyStadium8 && currentLoc === 8) {
-        score = score + 5;
-        visitLoc8 = true;
-    } else if (!Foy9 && currentLoc === 9) {
-        score = score + 5;
-        visitLoc9 = true;
-    } 
-    document.getElementById("Score").innerHTML = userScore;
-}
-
-*/
-
 // HELP FUNCTION
 function help() {
 	var message = "Click the directional buttons to change locations or enter the commands: N, S, E, W, n, s, e, w to change locations.  Locations and compass are displayed. To pick an item, type in the word \"take\". To list your inventory, type in the word \"list\" ";
