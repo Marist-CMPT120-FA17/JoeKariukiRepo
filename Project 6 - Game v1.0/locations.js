@@ -1,23 +1,10 @@
-/*
-Fix anything that was incorrect or incomplete with your prior project. (Commit. Push.) 
-Then, beginning with a perfect implementation of the prior version of your game, implement the following new features:
-[75 pts] Add a puzzle element to the gameplay so that it's necessary for the player to solve the puzzle to "win" or at least complete the game.
-Perhaps the player needs to acquire certain items to progress to the final location.
-Maybe some locations need to be encountered in a specific order.
-It could be something that can only happen after a given number of moves, or after a certain score is achieved by one or both of the methods above.
-Conceivably, it's some combination of all of these.  Be creative!  Make sure that the puzzle makes sense in the context of the game and that it's solvable by the player.
-[75 pts] Redo your navigation one final time, this time with a matrix; no more if-else, no more switch-case. 
-Write a function that takes the current location and direction moves as parameters and returns the new location (or the same location if the move was invalid). 
-Use that function to run all player navigation through the game.
-[50 pts] All non-navigation requirements from all projects 2, 3, 4, and 5 perfectly implemented.
-[-∞ if not] Software Development Best Practices ubiquitious in your source code.
-*/
-
-
 //Global variables
 	var score = 0;
     var currentLoc = 0;
+/*
 
+    // OLD LOCATION VARIABLES
+    
     var visitLoc0 = false;
     var visitLoc1 = false;
     var visitLoc2 = false;
@@ -28,8 +15,18 @@ Use that function to run all player navigation through the game.
     var visitLoc7 = false;
     var visitLoc8 = false;
     var visitLoc9 = false;
+*/
     
     var inventoryList = "Inventory:\n";
+    var inventory = [];
+    var Items = [];
+
+    var North = 0
+    var South = 1
+    var East = 2
+    var West = 3
+    // var isPlaying = true;
+
 
 // Item Arrays
 
@@ -49,30 +46,57 @@ function Location(id,name,description, item)
     this.name = name;
     this.description = description;
     this.item = item;
-    this.toString = function () {return(this.id + "" + this.name + "" + this.description); };
+    this.check = false;
+    this.toString = function () {
+        return(this.id + "" + this.name + "" + this.description); 
+    };
 }
 
 // Item Variables
-var item1 = new items(0, "book", "You've collected the book");
-var item2 = new items(3, "pine cones", "You've collected pine cones");
-var item3 = new items(6, "torch", "You've picked up a torch");
-var item4 = new items(9, "sea shells", "You've picked up a sea shell");
+var book = new item(0, "book", "You've collected the book");
+var pineCones = new item(3, "pine cones", "You've picked up a pine cone");
+var torch = new item(6, "torch", "You've picked up a torch");
+var seaShells = new item(9, "sea shells", "You've picked up a sea shell");
+
+
+// Global Item Variables
+var items = new Array();
+items[0] = book;
+items[3] = pineCones;
+items[6] = torch;
+items[9] = seaShells;
+
+
+
+
 
 // Location Variables
-var loc_porch = new Location(0,"terrace", "You are sitting comfortably on a rocking chair infront of a cabin. You're about to read a book when suddenly you hear a strange sound. You can pick the book with you", item1);
-var loc_frontCabin = new Location(1, "frontCabin", "You are standing in front of the cabin. A dog runs towards you to greet you!");
-var loc_forest = new Location(2, "forest", "You're standing in the middle of a forest. You hear the sounds of owls hooting");
-var loc_pineTree = new Location(3, "pineTree", "You reach the end of the forest. There's a large pine tree with pine cones every where. Pick them up!", item2);
-var loc_cave = new Location(4, "cave", "You are standing in front of a large cave. You try to see what's inside the cave but it is too dark. There's a torch lying near you.", item3);
-var loc_insideCave = new Location(5, "insideCave", "You are standing inside the cave. It's very dark and cold. You see cave paintings on the walls. You reach a dead end!");
-var loc_road = new Location(6, "road", "You are standing next to a country road, from here you can see a picture of a town.");
-var loc_cliff = new Location(7, "cliff", "You are standing at the edge of a cliff. There is a lighthouse in the distance");
-var loc_lake = new Location(8, "lake", "You are standing near a lake. You hear screaming.");
-var loc_beach = new Location(9, "beach", "You are standing at the beach of the lake. You see children playing in the lake. There are sea shells everywhere.", item4);
+var loc_porch = new Location(0, "terrace", " You are sitting comfortably on a rocking chair infront of a cabin. You're about to read a book when suddenly you hear a strange sound. You can pick the book with you", book);
+var loc_frontCabin = new Location(1, "frontCabin", "You are standing in front of the cabin. A dog runs towards you to greet you!", null);
+var loc_forest = new Location(2, "forest", "You're standing in the middle of a forest. You hear the sounds of owls hooting", null);
+var loc_pineTree = new Location(3, "pineTree", "You reach the end of the forest. There's a large pine tree with pine cones every where. Pick them up!", pineCones);
+var loc_cave = new Location(4, "cave", "You are standing in front of a large cave. You try to see what's inside the cave but it is too dark. There's a torch lying near you.", torch);
+var loc_insideCave = new Location(5, "insideCave", "You are standing inside the cave. It's very dark and cold. You see cave paintings on the walls. You reach a dead end!", null);
+var loc_road = new Location(6, "road", "You are standing next to a country road, from here you can see a picture of a town.", null);
+var loc_cliff = new Location(7, "cliff", "You are standing at the edge of a cliff. There is a lighthouse in the distance", null);
+var loc_lake = new Location(8, "lake", "You are standing near a lake. You hear screaming.", null);
+var loc_beach = new Location(9, "beach", "You are standing at the beach of the lake. You see children playing in the lake. There are sea shells everywhere.", seaShells);
 
 //Global Location Array
 var gLocations = [loc_porch, loc_frontCabin, loc_forest, loc_pineTree, loc_cave, loc_insideCave, loc_road, loc_cliff, loc_lake, loc_beach];
 
+
+
+//  Item Track Function
+function item (id, name, description) {
+	this.id = id;
+	this.name = name;
+	this.description = description;
+	this.check = 0;
+	this.toString=function () {
+		return this.description;
+	}	
+}
 
 
 // User Commands
@@ -118,6 +142,10 @@ var gLocations = [loc_porch, loc_frontCabin, loc_forest, loc_pineTree, loc_cave,
           document.getElementById("score").innerHTML = score;
         }
 //Take Item
+/*
+
+    // OLD 'ITEM TAKE' FUNCTION
+    
         function itemTake(){
           if (gLocations[currentLoc].item == undefined){
             alert("There is no item to take!");
@@ -129,9 +157,24 @@ var gLocations = [loc_porch, loc_frontCabin, loc_forest, loc_pineTree, loc_cave,
             updateDisplay(gItems[gItems.length-1].description);
           }
         }
+ */
 
+// 
+function itemTake() {
+    var checkItem = gLocations[currentLoc];
+	if (checkItem.item === null) {
+		var message = "There is nothing to take here."
+		updateDisplay(message);
+	} else {
+		inventory.push(items[currentLoc].name);
+		updateDisplay("You have picked up " + items[currentLoc].name);
+		gLocations[currentLoc].item = null;
+	}	
+    
+}
+    
 //Inventory
-        function inventory(){
+        function inventoryCheck(){
           if (gItems.length == 0){
             alert("No items in Inventory.\n");
           }
@@ -139,11 +182,29 @@ var gLocations = [loc_porch, loc_frontCabin, loc_forest, loc_pineTree, loc_cave,
             alert(inventoryList);
           }
         }
-        
-     
-//LOCATION FUNCTIONS
 
-  function porch() {
+function look() {
+    var message = "";
+	message = gLocations[currentLoc];
+	var checkItem = gLocations[currentLoc].item;
+	if (checkItem !== null) {
+		message = message + checkItem;
+	}
+	updateDisplay(message); 
+}
+
+//Calls look()
+	function init() {
+            look();
+    }       
+/*     
+
+
+// OLD NAVIGATION AND LOCATION FUNCTIONS
+
+
+//LOCATION FUNCTIONS
+ function porch() {
     if (visitLoc0 == false) {
         visitLoc0 = true;
         score += 5;
@@ -261,10 +322,6 @@ function look() {
      }
  }
 
-//Calls look()
-	function init() {
-            look();
-    }
 
 //Button Handlers for Directions
  //North
@@ -448,6 +505,87 @@ function look() {
     updateDisplay(gLocations[currentLoc].description);
    }
  }
+*/
+
+
+
+// NEW 'WORK-IN-PROGRESS' NAVIGATION USING MATRIX - NEED HELP UNDERSTANDING HOW THIS WORKS
+
+var btn = ["btnNorth","btnSouth","btnEast","btnWest"]
+var nav = [//N S E W
+			   [1,6,7,-1],		//0			
+			   [2,0,4,-1],		//1
+			   [9,1,-1,3],		//2
+			   [-1,-1,2,-1],	//3
+			   [-1,7,5,1],		//4
+			   [-1,-1,-1,4],	//5
+			   [0,-1,8,-1],		//6
+			   [4,8,-1,0],		//7
+			   [7,-1,-1,6],		//8
+			   [-1,2,10,-1],	//9
+			   [-1,-1,-1,9],	//10
+			   ]
+
+var NoBtn =	[//N S E W
+			[0,0,0,1],  //0
+			[0,0,0,1],	//1
+			[0,0,1,0],	//2
+			[1,1,1,1],	//3
+			[1,0,0,0],	//4
+			[1,1,1,0],	//5
+			[0,1,0,1],	//6
+			[0,0,1,0],	//7
+			[0,1,1,0],	//8
+			[1,0,0,1],	//9
+			[1,1,1,0],  //10
+			]
+            
+function btnNorth_click() {
+		nextLoc(North);
+ }
+
+function btnSouth_click() {
+		nextLoc(South);
+ }
+
+ function btnEast_click() {
+		nextLoc(East);
+ }
+
+ function btnWest_click() {
+		nextLoc(West);            
+ }
+                  
+ function nextLoc(dir) {
+	var newLoc = nav[currentLoc][dir];
+	if (newLoc >= 0) {
+		if (newLoc==3 && inventory.length==5 && score == 50){
+			currentLoc = newLoc;
+			look();
+			updateDisplay("Congratulations! You won!");
+			//isPlaying = false;
+			//Disable();
+		}else if (newLoc==3){
+			updateDisplay("You can't go to the cave yet.");		
+		}else{
+			currentLoc = newLoc;
+			look();
+			//Disable();
+		}
+	} else {
+	   updateDisplay("You can't go that way.");
+	} 
+	updateScore();           
+ }
+
+function updateScore() {
+	var scoring = gLocations[currentLoc];
+	if(scoring.check === false) {
+		score += 5;
+		document.getElementById("score").innerHTML = score;
+		scoring.check = true;
+	}
+}		
 
 
 // HELP FUNCTION
@@ -456,7 +594,6 @@ function help() {
 	updateDisplay(message);
 }
 
-// TAKE ITEM FUNCTION
 
 
 //Update Text Display
