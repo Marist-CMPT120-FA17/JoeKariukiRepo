@@ -17,128 +17,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Walter+Turncoat|Kreon" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="game.js"></script>
+    <script type="text/javascript" src="locations.js"></script>
+    
     
     <title>Cabin in the Woods | Joe Kariuki's Game</title>
-    <style>
-        body {
-            text-align: center;
-            background-image: url("https://static.pexels.com/photos/79491/dark-creepy-spooky-woods-79491.jpeg");
-            background-position: center;
-            font-family: 'Kreon', serif;
-            letter-spacing: 2px;
-        }
-        
-        .main {
-            padding-top: 20px;
-        }
-        
-        .title {
-            padding-top: 20px;
-            color: #ffffff;
-            font-family: 'Walter Turncoat', cursive;
-        }
-        
-        h1 {
-            
-            font-size: 70px; 
-            letter-spacing: 10px;
-            line-height: 50px;
-        }
-        
-        h4 {
-            font-size: 20px;
-            margin: none;
-            color: #ffffff;
-        }
-        
-        .text-area {
-            text-align: center;
-            font-size: 18px;
-            padding-top: 15px;
-        }
-        
-        .user-input {
-            padding: 5px;
-        }
-        
-        .input {
-            background-color: #ffffff;
-            color: #000000;
-            margin: 5px;
-            font-weight: 600;
-            border: 5px solid #ffffff;
-            border-radius: 3px;
-            text-align: center;
-
-        }
-        
-        .btn {
-            background-color: #ffffff;
-            color: #000000;
-            margin: 5px;
-            font-weight: 600;
-        }
-        
-        .btn:hover {
-            background-color: #000000;
-            color: #ffffff;
-            
-        }
-        
-        .btn:active, btn:focus {
-            background-color: #000000;
-            color: #ffffff;
-            outline: none !important;
-        }
-        
-        .score {
-            color: #ffffff;
-            font-size: 18px;
-            padding-top: 10px;
-        }
-        
-        
-        #points {
-            color: #ffffff;
-            font-size: 25px;
-        }
-        
-        .directions h4 {
-            color: #ffffff;
-            font-size: 20px;
-            padding-bottom: 10px;
-            padding-top: 10px;;
-        }
-        .email {
-            font-size: 15px;
-            color: #ffffff;
-            padding-top: 10px;
-        }
-        
-        i {
-            color: #ffffff;
-        }
-        
-        i:hover {
-            color: #000000;
-        }
-        
-        footer {
-            font-size: 12px;
-            color: #ffffff;
-        }
-        
-        footer p {
-            padding-top: 12px;
-            letter-spacing: 3px;
-        }
-  
-    </style>
     
     <script type = "text/javascript" src="locations.js"></script>
 </head>
 
-<body onload="init();">
+<body onload="Init();">
  
  <script>
     
@@ -163,10 +52,12 @@
                <textarea name="userInput" id="userInput" cols="20" rows="1" class="input" placeholder="Input a Command"></textarea>
                <br>
 		        
-                <input type="button" value="Inventory" id = "inventory" onclick="inventory()"  class="btn"/>
-                <input type="button"  id="go" value="Go" onclick="btnGo_click()" class="btn go" />
-                <input type="button"  id="help" value="Help" onclick="help()" class="btn" />
-             
+                <input type="button" value="Check Inventory" id = "btnInventory" onclick="checkInventory()"/>
+               
+                 <input type="button"  id="btnEnterCommand" value="Enter Command" onclick="btnEnterCommand_click();"/>
+                 
+                <input type="button" value="Take Item" onclick="itemTake()" id="btnTake"/>
+                <input type="button"  id="help" value="Help" onclick="help()"/>             
               </div>
       </div>
     
@@ -175,13 +66,13 @@
    
 	   <h4>Directions</h4>
 
-		<input type="button" value="North" onclick= "btnNorth_click();" id="btnNorth" class="btn"/>
+		<input type="button" value="North" onclick= "btnNorth_click();" id="btnNorth"/>
 		
-		<input type="button" value="South" onclick="btnSouth_click();" id="btnSouth" class="btn"/>
+		<input type="button" value="South" onclick="btnSouth_click();" id="btnSouth"/>
 		
-		<input type="button" value="East" onclick="btnEast_click();" id="btnEast" class="btn"/>
+		<input type="button" value="East" onclick="btnEast_click();" id="btnEast"/>
 		
-		<input type="button" value="West" onclick="btnWest_click();" id="btnWest" class="btn"/>
+		<input type="button" value="West" onclick="btnWest_click();" id="btnWest"/>
 		
    <div class="main">
        <div class="map">
