@@ -1,7 +1,7 @@
 //Global variables
 	var score = 0;
     var currentLoc = 0;
-    var nextLocation = 0;
+    var newLoc = 0;
     var inventory = [];
     var North = 0;
     var South = 1;
@@ -11,37 +11,35 @@
 
 
     
-// Navigation  work-in-progress      
+// Can't seem to figure out what's wrong with my navigation    
 var btn = ["btnNorth","btnSouth","btnEast","btnWest"];
 var nav = [   //N S E W
-              [1,2,3,4],	//0
-    
-              [-1,0,5,-1],	//1
-    
-              [0,-1,6,7],	//2
-    
-              [5,6,9,0],	//3
-    
-              [-1,7,0,-1],	//4
-    
-              [8,3,-1,1],	//5
-    
-              [3,-1,-1,2],	//6
-    
-              [4,-1,2,-1],	//7
-						   
-              [10,5,-1,-1], //8
-    
-              [-1,-1,-1,3], //9
-						   
-              [-1,-1,-1,-1], //10
-			   
+               [1,6,7,-1],		//0			
+			   [2,0,4,-1],		//1
+			   [8,1,-1,3],		//2
+			   [9,-1,2,-1],	    //3
+			   [3,7,5,1],		//4
+			   [6,-1,-1,4],	    //5
+			   [8,-1,8,-1],		//6
+			   [4,8,-1,0],		//7
+			   [7,-1,-1,6],		//8
+			   [-1,2,10,-1],	//9		   
             ];
 
 
 var noBtn =	[//N S E W
     
-			[0,0,1,1],  //0  
+			[0,0,0,1],  //0
+			[0,0,0,1],	//1
+			[0,0,1,0],	//2
+			[1,1,1,1],	//3
+			[1,0,0,0],	//4
+			[1,1,1,0],	//5
+			[0,1,0,1],	//6
+			[0,0,1,0],	//7
+			[0,1,1,0],	//8
+			[1,0,0,1],	//9
+			[1,1,1,0],  //10
 
 			];
 
@@ -49,17 +47,17 @@ var noBtn =	[//N S E W
 
 function nextLoc(move) {
     var message = "You can't go that way!";
-    var nextLocation = nav[currentLoc][move];
-	if (nextLocation >= 10) {
-		lookTime(nextLocation);
-	} else {		
-		updateDisplay(message);
+    var newLoc = nav[currentLoc][move];
+	if (newLoc >= 10) {
+		lookTime(newLoc);
+	} else if (newLoc == 5) {		
+		updateDisplay('You can\'t go to the cave without a torch');
 	}
     updateScore();
 }
 
 function btnNorth_click() {
-		nextLoc(North);
+        nextLoc(North);
 }
 
 function btnSouth_click() {
@@ -76,21 +74,21 @@ function btnSouth_click() {
 
 
 //lookTime function
-function lookTime(nextLocation) {
-	var message = "";
-	message = gLocations[nextLocation].desc;
-	if (nextLocation >= 10) {
+function lookTime(newLoc) {
+	var message = " ";
+	message = gLocations[newLoc].desc;
+	if (newLoc >= 10) {
 	if (inventory.length > 3) {
-			currentLoc = nextLocation;
+			currentLoc = newLoc;
 			updateDisplay(message);
-			updateDisplay("Congrats, you win!");
+			updateDisplay("Congrats, you've made it to the cave!");
 			document.getElementById("btnTake").disabled = true;
 			document.getElementById("btnCommand").disabled = true;
 		} else {
-		updateDisplay("You must collect all items to proceed!");
+		updateDisplay("You must collect all items to proceed to the cave");
 	}
 	} else {
-        currentLoc = nextLocation;
+        currentLoc = newLoc;
         updateDisplay(message);
 	}
         disableTime();
@@ -99,7 +97,7 @@ function lookTime(nextLocation) {
 
 function disableTime() {
 	var disable = 0;
-	for (j=0; j < btn.length; j++) {
+	for ( var j = 0; j < btn.length; j++ ) {
 		disable = noBtn[currentLoc][j];
 	  if (disable === 1) {
 	  document.getElementById(btn[j]).disabled = true;
@@ -184,7 +182,6 @@ function itemTake() {
           }
             alert(message);
         }
-//Inventory List
 
 function look() {
     var message = "";
@@ -232,15 +229,68 @@ function updateScore() {
 
 //  Locations.js for game.html v1.0
 
-function Location (id, name, description, item) {
+function Location(id, name, desc, item)
+{
     this.id = id;
     this.name = name;
-    this.description = description;
+    this.desc = desc;
     this.item = item;
-    this.check = false;
-    this.toString = function () {
-        return(this.id + "" + this.name + "" + this.description); 
-    };
+    this.visited = false;
+    function toString() {
+		return name + desc;
+    }
 }
+
+
+// Location Variables
+var loc_porch = new Location (0, "terrace", " You are sitting comfortably chair inside your cabin. You're about to read a book when suddenly you hear a strange sound. You can pick the book with you", book, false);
+
+var loc_frontCabin = new Location (1, "frontCabin", "You are standing in front of the cabin. A dog runs towards you to greet you!", null, false);
+
+var loc_forest = new Location (2, "forest", "You're standing in the middle of a forest. You hear the sounds of owls hooting", null, false);
+
+var loc_pineTree = new Location (3, "pineTree", "You reach the end of the forest. There's a large pine tree with pine cones every where. Pick them up!", pineCone, false);
+
+var loc_cave = new Location (4, "cave", "You are standing in front of a large cave. You try to see what's inside the cave but it is too dark. There's a torch lying near you.", torch, false);
+
+var loc_insideCave = new Location (5, "insideCave", "You are standing inside the cave. It's very dark and cold. You see cave paintings on the walls. You reach a dead end!", null, false);
+
+var loc_road = new Location (6, "road", "You are standing next to a country road, from here you can see a picture of a town.", null, false);
+
+var loc_cliff = new Location(7, "cliff", "You are standing at the edge of a cliff. There is a lighthouse in the distance", null, false);
+
+var loc_lake = new Location (8, "lake", "You are standing near a lake. You hear screaming.", null, false);
+
+var loc_beach = new Location (9, "beach", "You are standing at the beach of the lake. You see children playing in the lake. There are sea shells everywhere.", seaShell, false);
+
+//Global Location Array
+
+var gLocations = [loc_porch, loc_frontCabin, loc_forest, loc_pineTree, loc_cave, loc_insideCave, loc_road, loc_cliff, loc_lake, loc_beach];
+
+// Items Prototype
+function item (id, name, desc) {
+	this.id = id;
+	this.name = name;
+	this.desc = desc;
+	this.isTaken = false;
+	function toString() {
+		return desc;
+	}
+}
+
+// Item Variables
+var book = new item (0, "book", "You've collected the book", false);
+var pineCone = new item (3, "pine cones", "You've picked up a pine cone", false);
+var torch = new item (6, "torch", "You've picked up a torch", false);
+var seaShell = new item (9, "sea shells", "You've picked up a sea shell", false);
+
+
+// Item Variables
+var items = new Array();
+items[0] = book;
+items[3] = pineCone;
+items[6] = torch;
+items[9] = seaShell;
+
 
 
