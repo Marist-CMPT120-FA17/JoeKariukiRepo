@@ -2,52 +2,65 @@
 	var score = 0;
     var currentLoc = 0;
     var nextLocation = 0;
-    
-    var inventoryList = "Inventory:\n";
     var inventory = [];
-    var North = 0
-    var South = 1
-    var East = 2
-    var West = 3
-    var init = false
+    var North = 0;
+    var South = 1;
+    var East = 2;
+    var West = 3;
+    var init = false;
 
 
     
 // Navigation  work-in-progress      
-var btn = ["btnNorth","btnSouth","btnEast","btnWest"]
+var btn = ["btnNorth","btnSouth","btnEast","btnWest"];
 var nav = [   //N S E W
-			  [1,2,3,4],	//0			
-              [-1,0,5,-1],	//1
-              [0,-1,6,7],	//2
-              [5,6,9,0],	//3
-              [-1,7,0,-1],	//4
-              [8,3,-1,1],	//5
-              [3,-1,-1,2],	//6
-              [4,-1,2,-1],	//7
-              [10,5,-1,-1], //8
-              [-1,-1,-1,3], //9
-              [-1,-1,-1,-1], //10
+              [1,2,3,4],	//0
     
-			   ]
+              [-1,0,5,-1],	//1
+    
+              [0,-1,6,7],	//2
+    
+              [5,6,9,0],	//3
+    
+              [-1,7,0,-1],	//4
+    
+              [8,3,-1,1],	//5
+    
+              [3,-1,-1,2],	//6
+    
+              [4,-1,2,-1],	//7
+						   
+              [10,5,-1,-1], //8
+    
+              [-1,-1,-1,3], //9
+						   
+              [-1,-1,-1,-1], //10
+			   
+            ];
 
-var NoBtn =	[//N S E W
-			[0,0,0,1],  //0  
-			[0,0,0,1],	//1 
-			[0,0,1,0],	//2 
-			[1,1,1,1],	//3 
-			[1,0,0,0],	//4
-			[1,1,1,0],	//5
-			[0,1,0,1],	//6
-			[0,0,1,0],	//7
-			[0,1,1,0],	//8
-			[1,0,0,1],	//9
-			[1,1,1,0],  //10
-			]
-            
+
+var noBtn =	[//N S E W
+    
+			[0,0,1,1],  //0  
+
+			];
+
+
+
+function nextLoc(move) {
+    var message = "You can't go that way!";
+    var nextLocation = nav[currentLoc][move];
+	if (nextLocation >= 10) {
+		lookTime(nextLocation);
+	} else {		
+		updateDisplay(message);
+	}
+    updateScore();
+}
 
 function btnNorth_click() {
 		nextLoc(North);
- }
+}
 
 function btnSouth_click() {
 		nextLoc(South);
@@ -60,18 +73,6 @@ function btnSouth_click() {
  function btnWest_click() {
 		nextLoc(West);            
  }
-                  
-
-function nextLoc(dir) {
-    var message = "You can't go that way!";
-    nextLocation = nav[currentLoc][dir];
-	if (nextLocation >= 0) {
-		lookTime(nextLocation);
-	} else {		
-		updateDisplay(message);
-	}
-    updateScore();
-}
 
 
 //lookTime function
@@ -79,7 +80,7 @@ function lookTime(nextLocation) {
 	var message = "";
 	message = gLocations[nextLocation].desc;
 	if (nextLocation >= 10) {
-	if (inventory.length > 4) {
+	if (inventory.length > 3) {
 			currentLoc = nextLocation;
 			updateDisplay(message);
 			updateDisplay("Congrats, you win!");
@@ -89,17 +90,17 @@ function lookTime(nextLocation) {
 		updateDisplay("You must collect all items to proceed!");
 	}
 	} else {
-	currentLoc = nextLocation;
-	updateDisplay(message);
+        currentLoc = nextLocation;
+        updateDisplay(message);
 	}
-	DisableTime();
-	updateScore();
+        disableTime();
+        updateScore();
 }
 
-function DisableTime() {
+function disableTime() {
 	var disable = 0;
 	for (j=0; j < btn.length; j++) {
-		disable = NoBtn[currentLoc][j];
+		disable = noBtn[currentLoc][j];
 	  if (disable === 1) {
 	  document.getElementById(btn[j]).disabled = true;
 	  } else {
@@ -144,7 +145,7 @@ function item (id, name, description) {
                                 } else if (userText === "Take" || userText === "take") {
                                    itemTake();
                                 } else if (userText == "list") {
-                                    inventory();
+                                    inventoryCheck();
                                 } else {
                                     errorMsg();
                                 }
@@ -173,15 +174,17 @@ function itemTake() {
     
 }
     
-//Inventory
-        function inventoryCheck(){
-          if (gItems.length == 0){
+//Inventory Check
+        function inventoryCheck() {
+          if (items.length == 0){
             alert("No items in Inventory.\n");
           }
           else{
-            alert(inventoryList);
+            var message = "Inventory:\n" + inventory;
           }
+            alert(message);
         }
+//Inventory List
 
 function look() {
     var message = "";
@@ -193,7 +196,7 @@ function look() {
 	updateDisplay(message); 
 }
 
-//Calls look()
+//Calls Init()
 
 function Init() {
     if (init === false) {
@@ -207,8 +210,7 @@ function Init() {
 
 // HELP FUNCTION
 function help() {
-	var message = "Click the directional buttons to change locations or enter the commands: N, S, E, W, n, s, e, w to change locations.  Locations and compass are displayed. To pick an item, type in the word \"take\". To list your inventory, type in the word \"list\" ";
-	updateDisplay(message);
+	alert("Click the directional buttons to change locations or enter the commands: N, S, E, W, n, s, e, w to change locations.  Locations and compass are displayed. To pick an item, type in the word \"take\". To list your inventory, type in the word \"list\" ");
 }
 
 
@@ -227,3 +229,18 @@ function updateScore() {
 		scoring.check = true;
 	}
 }		
+
+//  Locations.js for game.html v1.0
+
+function Location (id, name, description, item) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.item = item;
+    this.check = false;
+    this.toString = function () {
+        return(this.id + "" + this.name + "" + this.description); 
+    };
+}
+
+

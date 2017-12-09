@@ -18,13 +18,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Walter+Turncoat|Kreon" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="game.js"></script>
-    <script type="text/javascript" src="locations.js"></script>
-    
     
     <title>Cabin in the Woods | Joe Kariuki's Game</title>
     
-    <script type = "text/javascript" src="locations.js"></script>
+    <script type="text/javascript" src="game.js"></script>
+    <script type="text/javascript" src="locations.js"></script>
 </head>
 
 <body onload="Init();">
@@ -52,7 +50,7 @@
                <textarea name="userInput" id="userInput" cols="20" rows="1" class="input" placeholder="Input a Command"></textarea>
                <br>
 		        
-                <input type="button" value="Check Inventory" id = "btnInventory" onclick="checkInventory()"/>
+                <input type="button" value="Check Inventory" id = "btnInventory" onclick="inventoryCheck();"/>
                
                  <input type="button"  id="btnEnterCommand" value="Enter Command" onclick="btnEnterCommand_click();"/>
                  
